@@ -1,17 +1,16 @@
 # mobLee
 MobLee StackOverflowApi
 
-O primeiro botão deverá executar as seguintes ações:
-1 - Buscar as 99 perguntas mais recentes com a tag PHP;
-2 - Persistir esses dados de maneira que sua API possa consumí-los;
-3 - Retornar feedback para o usuário assim que a persistência estiver concluída, ou em caso de falha.
+O primeiro botão deverá executar as seguintes ações (Durante esse processo, mantenha o usuário na página, sem recarregá-la): 
+  1. Buscar as 99 perguntas mais recentes com a tag PHP;
+  1. Persistir esses dados de maneira que sua API possa consumí-los;
+  1. Retornar feedback para o usuário assim que a persistência estiver concluída, ou em caso de falha.
 
-Durante esse processo, mantenha o usuário na página, sem recarregá-la.
-
-O formulário, na segunda metade da página, serve para definir os parâmetros que serão enviados para a chamada da sua API. Ao submeter o formulário, uma nova página deve abrir contendo o resultado da chamada da sua API. A chamada da sua API pode usar parâmetros definidos pelo usuário.
+O formulário, na segunda metade da página, serve para definir os parâmetros que serão enviados para a chamada da sua API. Ao submeter o formulário, uma nova página deve abrir contendo o resultado da chamada da sua API. 
+A chamada da sua API pode usar parâmetros definidos pelo usuário.
 
 Sua API deve responder à seguinte chamada:
-GET http://localhost/stack_moblee/v1/question?page={$1}&rpp={$2}&sort={$3}&score={$4}
+- GET http://localhost/stack_moblee/v1/question?page={$1}&rpp={$2}&sort={$3}&score={$4}
 
 Todos os 4 parâmetros são opcionais.
 - O parâmetro 'score' deve filtrar o resultado mostrando apenas as questões com valor maior que o definido por parâmetro.
@@ -19,6 +18,7 @@ Todos os 4 parâmetros são opcionais.
 - Os parâmetros 'page' e 'rpp' (results per page) devem sempre ser utilizados em conjunto. Inicie a contagem de páginas por 1 e não por 0.
 
 A resposta deve ser mostrada em formato json, seguindo esse formato:
+```javascript
 {
 "last_update": 1437405249,
 "content": [
@@ -42,15 +42,12 @@ A resposta deve ser mostrada em formato json, seguindo esse formato:
 }
 ]
 }
+```
+A propriedade last_update deve indicar a data da última vez que os dados foram persistidos. 
 
-A propriedade last_update deve indicar a data da última vez que os dados foram persistidos. Todas as propriedades que forem datas devem ser entregues no formato Unix Timestamp.
+Todas as propriedades que forem datas devem ser entregues no formato Unix Timestamp.
 
-Queremos que você nos envie o código até segunda-feira da semana que vem (27/07) pelo GitHub ou BitBucket.
-
-Caso não consiga completar a tarefa da forma como você gostaria, não tem problema. Envie o máximo de informações sobre o que você fez (seu código parcial, a forma como você pensou em resolver o problema, quais foram suas dificuldades, etc). Procure realizar commits curtos, dessa forma fica mais fácil visualizar seu processo.
-
-Se tiver dúvidas, não hesite em perguntar. Sinta-se a vontade de nos enviar antes do deadline.
 
 Aqui vão alguns links úteis:
-https://api.stackexchange.com/docs/
-http://www.unixtimestamp.com/
+- https://api.stackexchange.com/docs/
+- http://www.unixtimestamp.com/

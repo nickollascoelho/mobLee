@@ -1,5 +1,4 @@
-# mobLee
-MobLee StackOverflowApi
+# MobLee StackOverflowApi
 
 O primeiro botão deverá executar as seguintes ações (Durante esse processo, mantenha o usuário na página, sem recarregá-la): 
   1. Buscar as 99 perguntas mais recentes com a tag PHP;

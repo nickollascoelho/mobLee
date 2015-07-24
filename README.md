@@ -21,32 +21,27 @@ A resposta deve ser mostrada em formato json, seguindo esse formato:
 {
 "last_update": 1437405249,
 "content": [
-{
-"question_id": 1
-"title": "Título da pergunta",
-"owner_name": "Display name do usuário que fez a pergunta",
-"score": 10,
-"creation_date": 1437405249
-"link": "http://stackoverflow.com/questions/31520296/some-question",
-"is_answered": false
-},
-{
-"question_id": 2
-"title": "Título da pergunta 2",
-"owner_name": "Display name do usuário que fez a pergunta 2",
-"score": 5,
-"creation_date": 1437405248
-"link": "http://stackoverflow.com/questions/31520296/some-question",
-"is_answered": true
-}
-]
-}
+    {
+    "question_id": 1
+    "title": "Título da pergunta",
+    "owner_name": "Display name do usuário que fez a pergunta",
+    "score": 10,
+    "creation_date": 1437405249
+    "link": "http://stackoverflow.com/questions/31520296/some-question",
+    "is_answered": false
+    },
+    {
+    "question_id": 2
+    "title": "Título da pergunta 2",
+    "owner_name": "Display name do usuário que fez a pergunta 2",
+    "score": 5,
+    "creation_date": 1437405248
+    "link": "http://stackoverflow.com/questions/31520296/some-question",
+    "is_answered": true
+    }
+  ]
+};
 ```
 A propriedade last_update deve indicar a data da última vez que os dados foram persistidos. 
 
 Todas as propriedades que forem datas devem ser entregues no formato Unix Timestamp.
-
-
-Aqui vão alguns links úteis:
-- https://api.stackexchange.com/docs/
-- http://www.unixtimestamp.com/

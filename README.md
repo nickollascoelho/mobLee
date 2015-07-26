@@ -32,15 +32,7 @@ Node.js web application with a simple REST API built with Express 4.x.
 #### Introduction:
 The objective of this project is:
 - Consume [StackOverflow API](https://api.stackexchange.com/docs/) data.
-- Expose those data by it owns api.
-
-O primeiro botão deverá executar as seguintes ações (Durante esse processo, mantenha o usuário na página, sem recarregá-la):
-  1. Buscar as 99 perguntas mais recentes com a tag PHP;
-  1. Persistir esses dados de maneira que sua API possa consumí-los;
-  1. Retornar feedback para o usuário assim que a persistência estiver concluída, ou em caso de falha.
-
-O formulário, na segunda metade da página, serve para definir os parâmetros que serão enviados para a chamada da sua API. Ao submeter o formulário, uma nova página deve abrir contendo o resultado da chamada da sua API.
-A chamada da sua API pode usar parâmetros definidos pelo usuário.
+- Expose these data by its api.
 
 API Calls:
 1. GET http://localhost/stack_moblee/v1/persist
@@ -80,3 +72,5 @@ API Calls:
 The last_update property should have the last date when data were saved.
 
 All date properties should have the [Unix Timestamp](http://www.unixtimestamp.com) format.
+
+* Feel free to send pull requests. :-)

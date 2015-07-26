@@ -5,5 +5,5 @@
 'use strict'
 
 module.exports = {
-      url : 'mongodb://' + process.env.MONGOLAB_CONNECTION
+    url : 'mongodb://moblee:mobleepasswd@ds063892.mongolab.com:63892/stack_moblee'
 };

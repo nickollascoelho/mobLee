@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR" ng-app="app">
+<html>
   <head>
-    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PHP - StackOverflow API</title>
+    <title>MobLee StackOverflow API</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <style>
+    <link rel="shortcut icon" href="/static/favicon.ico" />
 
-    </style>
   </head>
-  <body ng-controller="AppController as appController">
+  <body>
     <div class="container">
       <div class="row">
         <div class="col-md-5">
@@ -21,7 +19,7 @@
       <br>
       <div class="row">
         <div class="col-md-3">
-          <button type="button" class="btn btn-primary btn-lg">Persistir dados</button>
+          <button id="btn-persist" type="button" class="btn btn-primary btn-lg">Persistir dados</button>
         </div>
       </div>
       <br><br>
@@ -36,36 +34,36 @@
             <br>
             <div class="row">
               <div class="col-md-12">
-                <form>
+                <form method="get" action="/questions" target="_blank">
                   <div class="row">
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="pageInput">Page</label>
-                        <input type="text" class="form-control" id="pageInput">
+                        <input type="number" class="form-control" id="pageInput" name="page" min="1" data-toggle="tooltip" data-placement="bottom" title="Mínimo: 1">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="rppInput">RPP</label>
-                        <input type="text" class="form-control" id="rppInput">
+                        <input type="number" class="form-control" id="rppInput" name="rpp" min="1" max="100" data-toggle="tooltip" data-placement="bottom" title="Máximo: 100">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="sortInput">Sort</label>
-                        <input type="text" class="form-control" id="sortInput">
+                        <input type="text" class="form-control" id="sortInput" name="sort">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="scoreInput">Score</label>
-                        <input type="text" class="form-control" id="scoreInput">
+                        <input type="number" class="form-control" id="scoreInput" name="score">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <button type="submit" class="btn btn-success pull-right">Buscar</button>
+                      <button id="btn-search" type="submit" class="btn btn-success pull-right">Buscar</button>
                     </div>
                   </div>
                 </form>
@@ -75,9 +73,17 @@
         </div>
       </div>
     </div>
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p id="modalText" class="modal-title text-success"><strong></strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script>
-    </script>
+    <script src="/js/main.js"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@
 
 Node.js web application with a simple REST API built with Express 4.x.
 
-[![Build Status](https://travis-ci.org/eiriklv/express-passport-app.svg?branch=master)](https://travis-ci.org/eiriklv/express-passport-app)
+[![Build Status](https://travis-ci.org/nickollascoelho/stack_moblee.svg?branch=master)](https://travis-ci.org/nickollascoelho/stack_moblee)
 
 #### Built with:
 * [node.js](http://www.nodejs.org/)
@@ -34,7 +34,8 @@ The objective of this project is:
 - Consume [StackOverflow API](https://api.stackexchange.com/docs/) data.
 - Expose these data by its api.
 
-API Calls:
+### API Calls:
+
 1. GET http://localhost/stack_moblee/v1/persist
   * Used to retrieve data from StackOverflow and persist to be consumed later.
 2. GET http://localhost/stack_moblee/v1/question?page={$1}&rpp={$2}&sort={$3}&score={$4} (All optional parameters)
@@ -42,27 +43,29 @@ API Calls:
   * Score paramter should query only questions with a greater value than specified.
   * Sort paramater define which property should be used to order the results. It accepts any of question model properties: question_id, title, owner_name, score, creation_date, link ou is_answered.
   * Page and 'rpp' (results per page) parameters should not be used without each other.
-  * JSON response like:
-  * ```javascript
+
+### JSON response:
+
+```javascript
   {
   "last_update": 1437405249,
   "content": [
       {
       "question_id": 1
-      "title": "Título da pergunta",
-      "owner_name": "Display name do usuário que fez a pergunta",
+      "title": "Question title 1",
+      "owner_name": "owner.display_name 1",
       "score": 10,
       "creation_date": 1437405249
-      "link": "http://stackoverflow.com/questions/31520296/some-question",
+      "link": "http://stackoverflow.com/questions/31520296/some-question-1",
       "is_answered": false
       },
       {
       "question_id": 2
-      "title": "Título da pergunta 2",
-      "owner_name": "Display name do usuário que fez a pergunta 2",
+      "title": "Question title 2",
+      "owner_name": "owner.display_name 2",
       "score": 5,
       "creation_date": 1437405248
-      "link": "http://stackoverflow.com/questions/31520296/some-question",
+      "link": "http://stackoverflow.com/questions/31520296/some-question-2",
       "is_answered": true
       }
     ]
@@ -73,4 +76,5 @@ The last_update property should have the last date when data were saved.
 
 All date properties should have the [Unix Timestamp](http://www.unixtimestamp.com) format.
 
-* Feel free to send pull requests. :-)
+
+Feel free to send pull requests. :-)

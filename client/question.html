@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Questions - MobLee StackOverflow API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <style>
+      #questionsTable {
+        display: none;
+        margin-top: 10px;
+        width: 1000px;
+      }
+      #questionsJSON {
+        background-color: #EEE;
+        font-family: Consolas,Menlo,Monaco,Lucida Console,monospace,serif;
+        margin-top: 10px;
+        max-height: 500px;
+        overflow: auto;
+        width: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <br><br>
+      </div>
+      <div class="row">
+        <label class="radio-inline">
+          <input type="radio" name="resultOption" id="jsonOption" value="json" checked> JSON
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="resultOption" id="tableOption" value="table"> Table
+        </label>
+      </div>
+      <div class="row">
+        <table id="questionsTable" class="table table-stripped table-bordered table-hover">
+          <tfoot>
+            <tr>
+              <td colspan="7">
+                <div>Ultima atualização: <span id="last_update"></span></div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        <pre id="questionsJSON">
+        </pre>
+      </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/js/question.js"></script>
+  </body>
+</html>

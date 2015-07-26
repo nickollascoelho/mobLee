@@ -12,11 +12,7 @@ var ResultSchema = new Schema({
 });
 
 ResultSchema.pre('save', function(next) {
-  this.last_update = Date.now();
-  next();
-});
-
-ResultSchema.pre('update', function(next) {
+  console.log('pre save');
   this.last_update = Date.now();
   next();
 });

@@ -8,18 +8,36 @@ var Result = require('./models/result'),
     Question = require('./models/question'),
     path = require('path'),
     request = require('request'),
-    zlib = require('zlib');
+    zlib = require('zlib'),
+    fs = require('fs');
 
 module.exports = function(app) {
 
-  app.get('/v1/persist', function(request, response) {
+  app.get('/v1/question', function(req, res) {
+    res.setHeader('content-type', 'application/json');
+    findWithQuery(req.query, function(err, result) {
+      if (err) res.send(err);
+      else res.send(result);
+    });
+  });
+
+  app.get('/v1/persist', function(req, res) {
+    res.setHeader('content-type', 'text/plain');
     requestWithEncoding(options, function(err, data) {
-      if (err) response.send(err);
+      if (err) res.send(err);
       else addQuestions(data, function(err) {
-        if (err) response.send(err);
-        else response.send('Success');
+        if (err) res.send(err);
+        else res.send('Success');
       });
     });
+  });
+
+  app.get('/:page', function(req, res) {
+    var page = req.params.page;
+    if (!page) return;
+    var filePath = path.resolve('client/' + page + '.html');
+    if (fs.existsSync(filePath)) res.sendFile(filePath);
+    else res.redirect("/");
   });
 
   app.get('/:folder/:filename', function(req, res) {
@@ -30,9 +48,64 @@ module.exports = function(app) {
     res.sendFile(path.resolve('client/' + folder + '/' + filename));
   });
 
-  app.get('*', function(request, response) {
-    response.sendFile(path.resolve('client/index.html'));
+  app.get('*', function(req, res) {
+    res.sendFile(path.resolve('client/index.html'));
   });
+};
+
+// =========== //
+
+
+var MAX_LIMIT_PER_PAGE = 100;
+
+/*
+ *  query: { page : Number, rpp : Number, sort : String,  score: Number }
+ */
+var findWithQuery = function(query, callback) {
+  var find = Question.find({});
+  if (query.score) {
+    find.where('score').gt(query.score);
+  }
+  if (query.sort) {
+    find.sort(query.sort);
+  }
+  if (query.page) {
+    find.skip((query.page - 1) * MAX_LIMIT_PER_PAGE);
+  }
+  if (query.rpp && query.rpp <= MAX_LIMIT_PER_PAGE) {
+    find.limit(query.rpp);
+  } else {
+    find.limit(MAX_LIMIT_PER_PAGE);
+  }
+  find.lean().exec(questionFindCallback(callback));
+};
+
+var questionFindCallback = function(cb) {
+  var callback = cb;
+  return function(err, docs) {
+    if (err) callback(err, null);
+    else Result.find({}).lean().exec(function(err, results) {
+          var result = results[0];
+          removeDatabaseProperties(result);
+          docs = docs.map(populateOwnerName);
+          result.content = docs.map(removeDatabaseProperties);
+          callback(err, result);
+        });
+  };
+};
+
+var populateOwnerName = function(doc) {
+  if (doc.owner) {
+    doc.owner_name = doc.owner.display_name;
+  }
+  return doc;
+};
+
+var removeDatabaseProperties = function(obj) {
+    delete obj._id;
+    delete obj.__v;
+    delete obj.owner;
+    return obj;
 };
 
 var options = {
@@ -74,10 +147,14 @@ var addQuestions = function(data, callback) {
   var questions = JSON.parse(data).items;
   Question.create(questions, function(err, docs) {
     Result.find({}, function(err, docs) {
+      var result;
       if (err) callback(err);
-      else Result.update(docs[0], function(err, doc) {
-            callback(err);
-           });
+      if (docs) result = docs[0];
+      if (!result) return;
+      result.last_update = Date.now();
+      Result.update(result, function(err, doc) {
+        callback(err);
+      });
     });
   });
 };

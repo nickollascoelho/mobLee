@@ -2,7 +2,7 @@
 
 Node.js web application with a simple REST API built with Express 4.x.
 
-[![Build Status](https://travis-ci.org/eiriklv/express-passport-app.svg?branch=master)](https://travis-ci.org/eiriklv/express-passport-app)
+[![Build Status](https://travis-ci.org/nickollascoelho/stack_moblee.svg?branch=master)](https://travis-ci.org/nickollascoelho/stack_moblee)
 
 #### Built with:
 * [node.js](http://www.nodejs.org/)
